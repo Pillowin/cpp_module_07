@@ -6,7 +6,7 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 14:49:12 by agautier          #+#    #+#              #
-#    Updated: 2021/11/05 16:10:24 by agautier         ###   ########.fr        #
+#    Updated: 2021/12/18 22:15:07 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ $O:
 $(OBJ): | $O
 
 $(OBJ): $O%.o: $S%.cpp
+	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $D:
@@ -48,6 +49,7 @@ $D:
 $(DEP): | $D
 
 $(DEP): $D%.d: $S%.cpp
+	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -MM -MF $@ -MT "$O$*.o $@" $<
 
 $(NAME): $(OBJ)
